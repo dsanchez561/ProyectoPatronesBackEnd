@@ -25,7 +25,6 @@ import co.com.patrones.proyecto.patrones.implement.UsuarioImpl;
  */
 @CrossOrigin(allowCredentials="false")
 @RestController
-@RequestMapping("/usuario")
 public class RestUsuario {
 
 	@Autowired
@@ -41,7 +40,7 @@ public class RestUsuario {
 	 * @return devuelve la estado del servidor
 	 * @throws IOException
 	 */
-	@RequestMapping(value = "/registrarUsuario/{nombre}/{apellidos}/{username}/{email}/{password}", method = RequestMethod.GET)
+	@RequestMapping(value = "/public/registrarUsuario/{nombre}/{apellidos}/{username}/{email}/{password}", method = RequestMethod.GET)
 	public ResponseEntity<List<String>> registrarUsuario(@PathVariable("nombre") String nombre,
 			@PathVariable("apellidos") String apellidos, @PathVariable("username") String username,
 			@PathVariable("email") String email, @PathVariable("password") String password) {
