@@ -28,6 +28,8 @@ public class UsuarioImpl {
 		 Usuario usuarioNuevo = new Usuario();
 		 
 		 usuarioNuevo.setUsername(username);
+		 usuarioNuevo.setNombre(nombre);
+		 usuarioNuevo.setApellidos(apellidos);
 		 usuarioNuevo.setPassword(password);
 		 usuarioNuevo.setEmail(email);
 		 

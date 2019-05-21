@@ -7,7 +7,6 @@ import java.io.IOException;
 import javax.annotation.PostConstruct;
 import javax.imageio.ImageIO;
 
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -15,8 +14,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import co.com.patrones.proyecto.patrones.entidades.Libro;
-import co.com.patrones.proyecto.patrones.implement.LibroImpl;
-import co.com.patrones.proyecto.patrones.log.Log;
 import co.com.patrones.proyecto.patrones.repositorios.LibroRepository;
 
 
@@ -29,12 +26,6 @@ import co.com.patrones.proyecto.patrones.repositorios.LibroRepository;
 @Component
 @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class StartUpInit {
-    
-//	@Log
-//	private static Logger log;
-	
-	@Autowired
-	private LibroImpl libroImpl;
 	
 	@Autowired
 	private LibroRepository libroRepository;
