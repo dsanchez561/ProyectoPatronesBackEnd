@@ -1,6 +1,7 @@
 
 ----------------------------------INSERTS USUARIO----------------------------------
 INSERT INTO public.usuario(apellidos, nombre, password, username, administrador)VALUES ('Sánchez Andrade','Daniel Santiago','123456','daniel',false);
+INSERT INTO public.usuario(apellidos, nombre, password, username, administrador)VALUES ('Guerrero Danderino','Brayan','123456','brayan',false);
 
 ----------------------------------INSERTS LIBROS----------------------------------
 INSERT INTO public.libro(id, autor, cantidad, editorial, nombre, precio, escogido, nombre_archivo) VALUES (1, 'Gabriel Garcia Marquez', 3, 'Panamericana', '100 años de soledad', 50000, false, 'CienAnios.jpg');
