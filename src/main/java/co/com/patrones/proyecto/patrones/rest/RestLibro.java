@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,8 +36,7 @@ public class RestLibro {
 	private LibroImpl libroImpl;
 
 	/**
-	 * Metodo que permite listar los eventos a los que esta suscrito el usuario
-	 * actual
+	 * Metodo que permite listar los libros registrados
 	 * 
 	 * @return devuelve la estado del servidor
 	 * @throws IOException
@@ -50,5 +50,24 @@ public class RestLibro {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		}
 	}
+	
+	/**
+	 * Metodo que permite listar los eventos a los que esta suscrito el usuario
+	 * actual
+	 * 
+	 * @return devuelve la estado del servidor
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/pagarLibros", method = RequestMethod.POST, produces = "application/json")
+	public ResponseEntity<List<Libro>> getLibros(@RequestBody List<Object> lista) {
+		try {
+			return ResponseEntity.status(HttpStatus.OK).body(libroImpl.getLibros());
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}
+	}
+	
+	
 
 }
