@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.com.patrones.proyecto.patrones.entidades.Libro;
+import co.com.patrones.proyecto.patrones.entidades.LibroComprarPojo;
 import co.com.patrones.proyecto.patrones.implement.LibroImpl;
 import co.com.patrones.proyecto.patrones.log.Log;
 
@@ -58,10 +59,11 @@ public class RestLibro {
 	 * @return devuelve la estado del servidor
 	 * @throws IOException
 	 */
-	@RequestMapping(value = "/pagarLibros", method = RequestMethod.POST, produces = "application/json")
-	public ResponseEntity<List<Libro>> getLibros(@RequestBody List<Object> lista) {
+	@RequestMapping(value = "/pagarLibros", method = RequestMethod.POST)
+	public ResponseEntity<Object> pagarLibros(@RequestBody List<LibroComprarPojo> lista) {
 		try {
-			return ResponseEntity.status(HttpStatus.OK).body(libroImpl.getLibros());
+			libroImpl.pagar(lista);
+			return ResponseEntity.status(HttpStatus.OK).body(null);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);

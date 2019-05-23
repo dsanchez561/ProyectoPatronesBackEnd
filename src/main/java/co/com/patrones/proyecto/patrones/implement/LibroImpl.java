@@ -10,13 +10,14 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Component;
 
 import co.com.patrones.proyecto.patrones.entidades.Libro;
-import co.com.patrones.proyecto.patrones.log.Log;
+import co.com.patrones.proyecto.patrones.entidades.LibroComprarPojo;
 import co.com.patrones.proyecto.patrones.repositorios.LibroRepository;
 
 /**
@@ -30,7 +31,7 @@ public class LibroImpl {
 	private LibroRepository libroRepository;
 
 	public List<Libro> getLibros() {
-		return libroRepository.findAll();
+		return libroRepository.getLibrosDisponibles(new Sort(Direction.ASC, "id"));
 	}
 
 	public void cargarImagenes() {
@@ -51,6 +52,14 @@ public class LibroImpl {
         ImageIO.write(imageOnDisk, "jpg", baos);
         baos.flush();
 	    return baos.toByteArray();
+	}
+
+	public void pagar(List<LibroComprarPojo> lista){
+		for(LibroComprarPojo lcp:lista) {
+			Libro libro = libroRepository.findById(lcp.getId()).get();
+			libro.setCantidad(libro.getCantidad()-lcp.getCantidad());
+			libroRepository.save(libro);
+		}
 	}
 
 	
